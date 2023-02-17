@@ -5,6 +5,7 @@ import { useAuthContext } from "../hooks/useAuthContext"
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
 
 function ProjectDetails({project}) {
+	
     const {dispatch} = useProjectsContext()
 	const {user} = useAuthContext()
 	const handleClick = async() => {
