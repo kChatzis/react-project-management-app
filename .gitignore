@@ -8,6 +8,8 @@ logs
 node_modules*
 bower_components
 
+frontend/README.md
+
 *.sublime*
 
 psd
