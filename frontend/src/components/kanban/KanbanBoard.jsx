@@ -4,7 +4,8 @@ import KanbanColumn from './KanbanColumn';
 import "../../css/KanbanBoard.css"
 import { useBoardContext } from '../../hooks/useBoardContext';
 import ColumnForm from './ColumnForm';
-const KanbanBoard = () => {
+
+function KanbanBoard() {
 
   const [modalIsOpen,setModalIsOpen] = useState(false)
   // const [board, setBoard] = useState([]);

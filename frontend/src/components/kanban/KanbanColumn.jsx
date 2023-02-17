@@ -3,7 +3,8 @@ import { Droppable,Draggable } from 'react-beautiful-dnd';
 import { useBoardContext } from '../../hooks/useBoardContext';
 import KanbanItem from './KanbanItem';
 
-const KanbanColumn = ({ column,index }) => {
+function KanbanColumn({column,index}) {
+  
   const [tasks, setTasks] = useState([]);
   const {dispatch} = useBoardContext()
 

@@ -2,9 +2,8 @@ import "../css/Signup.css"
 import { useState } from "react"
 import { useSignup } from "../hooks/useSignup"
 
+function Signup() {
 
-
-const Signup = () => {
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
     const {signup,isLoading,error} = useSignup()

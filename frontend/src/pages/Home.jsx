@@ -5,7 +5,8 @@ import ProjectDetails from "../components/ProjectDetails"
 import ProjectForm from "../components/ProjectForm"
 import { useAuthContext } from "../hooks/useAuthContext"
 
-const Home = ()=> {
+function Home () {
+    
 	const {projects,dispatch} = useProjectsContext()
     const {user} = useAuthContext()
    

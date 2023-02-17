@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import "../../css/ColumnForm.css"
 import { useBoardContext } from '../../hooks/useBoardContext';
 
-const ColumnForm = (props) => {
+function ColumnForm(props) {
+    
     const [title,setTitle] = useState("")
     const {dispatch} = useBoardContext()
 

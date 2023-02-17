@@ -1,6 +1,6 @@
 import KanbanBoard from "./kanban/KanbanBoard"
-const BoardCard = () => {
 
+function BoardCard() {
 
     return (
         <KanbanBoard></KanbanBoard>

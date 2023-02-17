@@ -1,5 +1,5 @@
 
-const SprintCard = () => {
+function SprintCard() {
 
     return (
             <h1>Sprint</h1>

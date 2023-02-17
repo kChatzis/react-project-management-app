@@ -1,6 +1,8 @@
 import { Link,Outlet,useLocation } from "react-router-dom"
 import "../css/ProjectCard.css"
-const ProjectCard = () => {
+
+function ProjectCard() {
+
     const location = useLocation() //passing the object project from ProjectDetails here on projectData 
     const {projectData} = location.state //passing the object project from ProjectDetails here on projectData 
     return ( 

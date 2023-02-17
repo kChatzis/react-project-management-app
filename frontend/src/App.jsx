@@ -9,8 +9,8 @@ import ProjectCard from "./components/ProjectCard";
 import SprintCard from "./components/SprintCard";
 import BoardCard from "./components/BoardCard";
 
-
 function App() {
+
   const {user} = useAuthContext()
   return (
     <div className="App">

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { useAuthContext } from "../hooks/useAuthContext"
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
 
-const ProjectDetails = ({project}) => {
+function ProjectDetails({project}) {
     const {dispatch} = useProjectsContext()
 	const {user} = useAuthContext()
 	const handleClick = async() => {

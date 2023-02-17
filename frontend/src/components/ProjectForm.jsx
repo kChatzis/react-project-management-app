@@ -3,7 +3,8 @@ import { useProjectsContext } from "../hooks/useProjectsContext"
 import "../css/ProjectForm.css"
 import { useAuthContext } from "../hooks/useAuthContext"
 
-const ProjectForm = () => {
+function ProjectForm() {
+    
     const {dispatch} = useProjectsContext()
     const {user} = useAuthContext()
 
