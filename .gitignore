@@ -9,6 +9,7 @@ node_modules*
 bower_components
 
 frontend/README.md
+backend/README.md
 
 *.sublime*
 
