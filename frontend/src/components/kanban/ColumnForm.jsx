@@ -21,6 +21,7 @@ function ColumnForm(props) {
     if (res.ok) {
       dispatch({ type: "CREATE_COLUMN", payload: data });
     }
+    props.onCancel();
   };
   return (
     <form onSubmit={handleSubmit}>

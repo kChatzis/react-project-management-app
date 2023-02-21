@@ -1,22 +1,21 @@
-  form {
-    background-color: #161b22;
-    height: 20rem;
-    width: 20rem;
-    border-radius:15px;
-    border:3px solid #194cb4;
-    margin: 4.2rem 2rem 0 0;
+form {
+  background-color: #161b22;
+  height: 20rem;
+  width: 20rem;
+  border-radius: 15px;
+  border: 3px solid #194cb4;
+  margin: 4.2rem 2rem 0 0;
 }
 
-
-  label {
-  display:block;
-  font-size:19px;
+label {
+  display: block;
+  font-size: 19px;
   margin-top: 20px;
   margin-left: 8px;
   color: white;
 }
 
-  input {
+input {
   display: block;
   width: 87%;
   padding: 10px 12px;
@@ -26,21 +25,21 @@
   color: white;
 }
 
-  button {
+button {
   padding: 9px 11px;
   width: 96%;
-  border-radius: 6px; 
+  border-radius: 6px;
   margin-left: 8px;
   margin-top: 30px;
   font-size: 17px;
   color: white;
   background-color: #0d1117;
 }
-  button:hover {
-  border:2px solid #194cb4;
+button:hover {
+  border: 2px solid #194cb4;
   box-shadow: 0 0 10px #194cb4;
 }
 
 .inputerror {
-  border: 1px solid #e7195a ;
+  border: 1px solid #e7195a;
 }

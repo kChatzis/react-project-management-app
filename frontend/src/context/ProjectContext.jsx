@@ -1,40 +1,39 @@
-import {createContext,useReducer} from "react"
+import { createContext, useReducer } from "react";
 
-export const ProjectsContext = createContext()
+export const ProjectsContext = createContext();
 
-export const projectsReducer = (state,action) => {
-	switch(action.type) {
-		case "SET_PROJECTS":
-			return {
-				projects: action.payload
-				// projects:[...state.projects,action.payload,]
-			}
-		case "CREATE_PROJECT":
-			return{
-				projects:[action.payload,...state.projects]
-				// projects:[...state.projects,action.payload,]
-			}
-		case "DELETE_PROJECT":
-			return {
-				projects: state.projects.filter((project) => 
-					project._id !== action.payload._id
-				)
-			}
-		default:
-			return state
-	}
+export const projectsReducer = (state, action) => {
+  switch (action.type) {
+    case "SET_PROJECTS":
+      return {
+        projects: action.payload,
+        // projects:[...state.projects,action.payload,]
+      };
+    case "CREATE_PROJECT":
+      return {
+        projects: [action.payload, ...state.projects],
+        // projects:[...state.projects,action.payload,]
+      };
+    case "DELETE_PROJECT":
+      return {
+        projects: state.projects.filter(
+          (project) => project._id !== action.payload._id
+        ),
+      };
+    default:
+      return state;
+  }
+};
 
-}
+export const ProjectsContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(projectsReducer, {
+    projects: null,
+  });
 
-export const ProjectsContextProvider = ({children}) => {
-	const [state,dispatch] = useReducer(projectsReducer, {
-		projects:null
-	})
-	
-	// console.log("ProjectState: ",state)
-	return(
-		<ProjectsContext.Provider value={{...state,dispatch}}>
-			{children}
-		</ProjectsContext.Provider>
-	)
-}
+  // console.log("ProjectState: ",state)
+  return (
+    <ProjectsContext.Provider value={{ ...state, dispatch }}>
+      {children}
+    </ProjectsContext.Provider>
+  );
+};
