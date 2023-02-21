@@ -1,39 +1,44 @@
-import React, { useState,useEffect} from 'react';
-import { Droppable,Draggable } from 'react-beautiful-dnd';
-import { useBoardContext } from '../../hooks/useBoardContext';
-import KanbanItem from './KanbanItem';
+import React, { useState, useEffect } from "react";
+import { Droppable, Draggable } from "react-beautiful-dnd";
+import { useBoardContext } from "../../hooks/useBoardContext";
+import KanbanItem from "./KanbanItem";
 
-function KanbanColumn({column,index}) {
-  
+function KanbanColumn({ column, index }) {
   const [tasks, setTasks] = useState([]);
-  const {dispatch} = useBoardContext()
+  const { dispatch } = useBoardContext();
 
   useEffect(() => {
     setTasks(column.tasks.sort((a, b) => a.order - b.order));
   }, [column.tasks]);
 
-  const deleteColumn = async() => {
-    const res = await fetch("/api/column/"+ column._id,{
-			method:"DELETE"
-		})
-		const data = await res.json()
+  const deleteColumn = async () => {
+    const res = await fetch("/api/column/" + column._id, {
+      method: "DELETE",
+    });
+    const data = await res.json();
 
-		if(res.ok) {
-			dispatch({type: "DELETE_COLUMN",payload: data})
-		}
-  }
+    if (res.ok) {
+      dispatch({ type: "DELETE_COLUMN", payload: data });
+    }
+  };
 
   return (
     <Draggable draggableId={column._id} index={index}>
       {(provided) => (
-        <div className='kanban-column'
+        <div
+          className="kanban-column"
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <nav className='flex-title'>
-            <h3 className='column-title'>{column.title} </h3>
-            <span onClick={deleteColumn} className="material-symbols-outlined delete">delete</span>
+          <nav className="flex-title">
+            <h3 className="column-title">{column.title} </h3>
+            <span
+              onClick={deleteColumn}
+              className="material-symbols-outlined delete"
+            >
+              delete
+            </span>
           </nav>
           <Droppable droppableId={column._id} type="task">
             {(provided) => (
@@ -48,12 +53,7 @@ function KanbanColumn({column,index}) {
         </div>
       )}
     </Draggable>
-   
-  
-  )
+  );
 }
-
-
-
 
 export default KanbanColumn;
