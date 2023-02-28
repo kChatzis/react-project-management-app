@@ -1,20 +1,28 @@
-const express = require("express")
-const router = express.Router()
-const {getColumns,createColumn,updateColumn,deleteColumn,updateColumnOrder} = require ("../controllers/columnController")
+const express = require("express");
+const router = express.Router();
+const {
+  getColumns,
+  createColumn,
+  updateColumn,
+  deleteColumn,
+  updateColumnOrder,
+} = require("../controllers/columnController");
+const requireAuth = require("../middleware/requireAuth");
 
+router.use(requireAuth);
 //get Columns
-router.get("/",getColumns)
+router.get("/", getColumns);
 
 //post a new Column
-router.post("/",createColumn)
+router.post("/", createColumn);
 
 //update the order
-router.patch("/order",updateColumnOrder)
+router.patch("/order", updateColumnOrder);
 
 //update a Column
-router.patch("/:id",updateColumn)
+router.patch("/:id", updateColumn);
 
 //delete a Column
-router.delete("/:id",deleteColumn)
+router.delete("/:id", deleteColumn);
 
-module.exports = router
+module.exports = router;

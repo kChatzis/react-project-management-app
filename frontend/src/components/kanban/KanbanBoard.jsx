@@ -3,17 +3,23 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import KanbanColumn from "./KanbanColumn";
 import "../../css/KanbanBoard.css";
 import { useBoardContext } from "../../hooks/useBoardContext";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import ColumnForm from "./ColumnForm";
 
 function KanbanBoard() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   // const [board, setBoard] = useState([]);
   const { board, dispatch } = useBoardContext();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchBoard = async () => {
       try {
-        const response = await fetch("/api/column/");
+        const response = await fetch("/api/column", {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
         let data = await response.json();
         data = data.sort((a, b) => a.order - b.order);
         // setBoard(data);
@@ -22,8 +28,10 @@ function KanbanBoard() {
         console.error(error);
       }
     };
-    fetchBoard();
-  }, []);
+    if (user) {
+      fetchBoard();
+    }
+  }, [dispatch, user]);
 
   const onDragEnd = async (result) => {
     const { destination, source, type } = result;
@@ -48,6 +56,7 @@ function KanbanBoard() {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
         },
         body: JSON.stringify({ columns: newColumns }),
       });

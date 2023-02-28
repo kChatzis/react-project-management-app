@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "../../css/ColumnForm.css";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import { useBoardContext } from "../../hooks/useBoardContext";
 
 function ColumnForm(props) {
   const [title, setTitle] = useState("");
   const { dispatch } = useBoardContext();
+  const { user } = useAuthContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,6 +16,7 @@ function ColumnForm(props) {
       body: JSON.stringify(column),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
       },
     });
     const data = await res.json();
