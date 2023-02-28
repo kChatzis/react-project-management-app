@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import { useBoardContext } from "../../hooks/useBoardContext";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import KanbanItem from "./KanbanItem";
 
 function KanbanColumn({ column, index }) {
   const [tasks, setTasks] = useState([]);
   const { dispatch } = useBoardContext();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     setTasks(column.tasks.sort((a, b) => a.order - b.order));
@@ -14,6 +16,9 @@ function KanbanColumn({ column, index }) {
   const deleteColumn = async () => {
     const res = await fetch("/api/column/" + column._id, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
     });
     const data = await res.json();
 
