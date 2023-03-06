@@ -8,7 +8,7 @@ import ColumnForm from "./ColumnForm";
 
 function KanbanBoard() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  // const [board, setBoard] = useState([]);
+  const [taskModal, setTaskModel] = useState(false);
   const { board, dispatch } = useBoardContext();
   const { user } = useAuthContext();
 
@@ -105,43 +105,61 @@ function KanbanBoard() {
     setModalIsOpen(true);
   };
 
+  const addTask = () => {
+    setTaskModel(true);
+  };
+
   const closeModalHandler = () => {
     setModalIsOpen(false);
   };
 
+  const closeTaskHandler = () => {
+    setTaskModel(false);
+  };
+
   return (
-    <div className="kanban-board">
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="droppable" direction="horizontal" type="column">
-          {(provided) => (
-            <div
-              className="kanban-card"
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-            >
-              {board &&
-                board.map((column, index) => (
-                  <KanbanColumn
-                    key={column._id}
-                    column={column}
-                    index={index}
-                  />
-                ))}
-              {provided.placeholder}
-              <span
-                onClick={addColumn}
-                className="material-symbols-outlined plus"
+    <>
+      <nav className="kanban-nav">
+        <button onClick={addColumn} className="kanban-button">
+          Add column
+        </button>
+        <button onClick={addTask} className="kanban-button">
+          Add Task
+        </button>
+      </nav>
+      <div className="kanban-board">
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable
+            droppableId="droppable"
+            direction="horizontal"
+            type="column"
+          >
+            {(provided) => (
+              <div
+                className="kanban-card"
+                ref={provided.innerRef}
+                {...provided.droppableProps}
               >
-                add
-              </span>
-              {modalIsOpen && (
-                <ColumnForm onCancel={closeModalHandler}></ColumnForm>
-              )}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
-    </div>
+                {board &&
+                  board.map((column, index) => (
+                    <KanbanColumn
+                      key={column._id}
+                      column={column}
+                      index={index}
+                      modal={taskModal}
+                      closetask={closeTaskHandler}
+                    />
+                  ))}
+                {provided.placeholder}
+                {modalIsOpen && (
+                  <ColumnForm onCancel={closeModalHandler}></ColumnForm>
+                )}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </div>
+    </>
   );
 }
 

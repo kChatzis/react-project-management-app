@@ -12,6 +12,10 @@ export const boardReducer = (state, action) => {
       return {
         board: [action.payload, ...state.board],
       };
+    // case "SET_TASK":
+    //   return {
+    //     board: [...state.board, ...action.payload],
+    //   };
     case "DELETE_COLUMN":
       return {
         board: state.board.filter(

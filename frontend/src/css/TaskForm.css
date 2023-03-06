@@ -43,7 +43,3 @@ button:hover {
 .inputerror {
   border: 1px solid #e7195a;
 }
-
-select {
-  width: 2rem;
-}

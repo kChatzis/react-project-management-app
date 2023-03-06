@@ -66,3 +66,14 @@
 .column-title {
   color: white;
 }
+
+.kanban-nav {
+  /* background-color: #194cb4; */
+}
+
+.kanban-button {
+  width: 10rem;
+  color: white;
+  margin: 0 0 1rem 1rem;
+  padding: 0.4rem 1rem;
+}
